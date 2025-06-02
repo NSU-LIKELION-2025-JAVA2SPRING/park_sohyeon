@@ -13,8 +13,13 @@ import java.util.List;
 public class PostService {
     private final PostRepository repository = new PostRepository();
 
-    // 새 게시글 생성
+    // 새 게시글 생성 + 제목 중복 방지 코드 추가
     public Post createPost(String title){
+        // 제목 중복 방지
+        if(repository.existTitle(title)){
+            throw new IllegalArgumentException("같은 제목이 이미 존재합니다.");
+        }
+
         Post post = new Post(title);
         return repository.save(post); // 저장 후 반환
     }

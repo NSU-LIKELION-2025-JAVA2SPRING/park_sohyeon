@@ -33,6 +33,16 @@ public class PostRepository {
     public void delete(Long id){
         storage.remove(id);
     }
+
+    // 추가과제 1. 중복된 제목의 게시글 작성 금지
+    public boolean existTitle(String title){
+        for (Post post : storage.values()){ // Map에 저장된 모든 post 객체들을 꺼내 제목 출력
+            if(post.getTitle().equals(title)){
+                return true;
+            }
+        }
+        return false;
+    }
 }
 
 
