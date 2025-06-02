@@ -5,25 +5,32 @@ package nsu.domain;
 게시글 구조 및 데이터 규칙 관리
 생성, 제목 유효성 검사, 제목 수정*/
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+// DB 랑 연결
+@Entity
 public class Post {
 
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     // 게시글마다 고유한 ID를 줌
-    private static long idCounter = 0;
 
     // ID가 변경되지 않도록 final
-    private final long id;
-    private String title;
 
+    private String title;
 
     // 게시글 만들때 id 자동으로 증가시킴
     public Post(String title){
         validationTitle(title);
-        this.id = ++idCounter;
+//        this.id = ++idCounter;
         this.title = title;
     }
 
     public long getId(){
-        return id;
+        return this.id;
     }
 
     public String getTitle(){
@@ -32,7 +39,6 @@ public class Post {
 
     // 제목 수정, 새로운 제목=newTitle도 유효성 만족해야됨
     public void updateTitle(String newTitle){
-        validationTitle(newTitle);
         this.title = newTitle;
     }
 
