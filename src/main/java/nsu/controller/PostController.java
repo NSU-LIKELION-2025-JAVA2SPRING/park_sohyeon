@@ -36,4 +36,9 @@ public class PostController {
     public void deletePost(Long id){
         service.deletePost(id);
     }
+
+    // 특정 키워드로 검색 요청
+    public List<Post> searchPost(String keyword){
+        return service.searchPostKeyword(keyword);
+    }
 }

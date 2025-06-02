@@ -46,4 +46,9 @@ public class PostService {
     public void deletePost(Long id){
         repository.delete(id);
     }
+
+    // 특정 키워드로 게시글 조회
+    public List<Post> searchPostKeyword(String keyword){
+        return repository.findByKeyword(keyword);
+    }
 }

@@ -14,6 +14,7 @@ public class Post {
     private final long id;
     private String title;
 
+
     // 게시글 만들때 id 자동으로 증가시킴
     public Post(String title){
         validationTitle(title);

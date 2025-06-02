@@ -43,6 +43,17 @@ public class PostRepository {
         }
         return false;
     }
+
+    // 추가과제 4. 제목 키워드로 게시글 검색 가능하게 하기
+    public List<Post> findByKeyword(String keyword){
+        List<Post> result = new ArrayList<>();
+        for(Post post : storage.values()){
+            if(post.getTitle().contains(keyword)){
+                result.add(post);
+            }
+        }
+        return result;
+    }
 }
 
 

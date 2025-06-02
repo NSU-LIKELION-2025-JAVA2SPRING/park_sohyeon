@@ -19,6 +19,8 @@ public class Main {
             System.out.println("3. 게시글 상세 조회");
             System.out.println("4. 게시글 수정");
             System.out.println("5. 게시글 삭제");
+            // 키워드 검색 기능 추가
+            System.out.println("6. 게시글 검색");
             System.out.println("0. 종료");
             System.out.print("선택: ");
 
@@ -65,6 +67,19 @@ public class Main {
                     Long id = Long.parseLong(scanner.nextLine());
                     controller.deletePost(id);
                     System.out.println("게시글이 삭제되었습니다.");
+                }
+                case 6 -> {
+                    System.out.println("검색어를 입력해주세요 : ");
+                    String keyword = scanner.nextLine();
+                    List<Post> posts = controller.searchPost(keyword);
+                    if (posts.isEmpty()){
+                        System.out.println("검색 결과가 없습니다.");
+                    } else {
+                        for(Post post : controller.searchPost(keyword)){
+                            System.out.printf("🆔 %d | 📌 제목: %s\n", post.getId(), post.getTitle());
+                        }
+                    }
+                    System.out.println("검색이 완료되었습니다.");
                 }
                 case 0 -> {
                     running = false;
